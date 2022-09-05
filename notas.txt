@@ -1,0 +1,7 @@
+git add .
+git commit -m "
+Connecting to database. Adding parameter to .env
+config file db.js to connect to mongoDB
+import in server.js
+"
+git push origin -u main
