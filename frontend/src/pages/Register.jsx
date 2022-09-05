@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { register } from '../features/auth/auth-slice'
+import { register, reset } from '../features/auth/auth-slice'
 
 import { FaUser } from 'react-icons/fa'
 import { toast } from 'react-toastify'
@@ -19,7 +20,22 @@ const Register = () => {
     const dispatch = useDispatch()
 
     //values from /auth/user-slice
-    const { user, isLoading, isSuccess, message } = useSelector(state => state.auth)
+    const { user, isLoading, isSuccess, isError, message } = useSelector(state => state.auth)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+
+        //redirect on success
+        if (isSuccess || user) {
+            navigate('/')
+        }
+
+        dispatch(reset())
+    }, [isError, isSuccess, message, user, navigate, dispatch])
 
     const changeHandler = event => {
         setFormData(prevState => ({
