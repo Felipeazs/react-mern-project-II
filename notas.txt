@@ -1,6 +1,7 @@
 git add .
 git commit -m "
 Backend:
-get and create tickets functionality: ticket-controller
+get single ticket, update and delete tickets functionality: ticket-controller
+Full CRUD ready
 "
 git push origin -u main
