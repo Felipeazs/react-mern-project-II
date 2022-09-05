@@ -1,7 +1,7 @@
 git add .
 git commit -m "
-Connecting to database. Adding parameter to .env
-config file db.js to connect to mongoDB
-import in server.js
+Creating the user model (schema)
+import in user-controller to check if user already exists
+MONGO_URI updated to supportdb
 "
 git push origin -u main
