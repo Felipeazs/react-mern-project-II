@@ -1,6 +1,6 @@
 git add .
 git commit -m "
 Backend:
-ticket-modal: ticket Schema and model
+get and create tickets functionality: ticket-controller
 "
 git push origin -u main
