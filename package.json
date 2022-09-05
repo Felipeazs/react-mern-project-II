@@ -4,7 +4,8 @@
 	"description": "Support app",
 	"main": "server.js",
 	"scripts": {
-		"start": "node backend/server.js"
+		"start": "node backend/server.js",
+		"server": "nodemon backend/server.js"
 	},
 	"repository": {
 		"type": "git",
@@ -15,5 +16,15 @@
 	"bugs": {
 		"url": "https://github.com/Felipeazs/react-mern-project-II/issues"
 	},
-	"homepage": "https://github.com/Felipeazs/react-mern-project-II#readme"
+	"homepage": "https://github.com/Felipeazs/react-mern-project-II#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"colors": "^1.4.0",
+		"dotenv": "^16.0.2",
+		"express": "^4.18.1",
+		"mongoose": "^6.5.4"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.19"
+	}
 }
