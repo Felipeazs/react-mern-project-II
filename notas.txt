@@ -1,7 +1,6 @@
 git add .
 git commit -m "
-Creating the user model (schema)
-import in user-controller to check if user already exists
-MONGO_URI updated to supportdb
+login functionality.
+Sending back JWT: npm i jsonwebtoken, JWT_SECRET
 "
 git push origin -u main
