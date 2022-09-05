@@ -1,9 +1,8 @@
 git add .
 git commit -m "
 Frontend:
-index.css added
-/pages: Home, Login, Register
-/components: Header
-basic styles
+Register state functionality
+Login state functionality
+Home style
 "
 git push origin -u main
