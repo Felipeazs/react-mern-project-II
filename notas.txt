@@ -1,12 +1,9 @@
 git add .
 git commit -m "
-Backend:
-Creating the frontend folder: npx create-react-app@latest frontend --template redux
-package.json scripts updated:  client: npm start --prefix frontend
-install concurrently to open back and front at the same time: npm i concurrently
-package.json scripts updated: dev: concurrently \"npm run server\" \"npm run client\"
-
 Frontend:
-In frontend install: npm i react-router-dom react-toastify axios react-icons react-modal
+index.css added
+/pages: Home, Login, Register
+/components: Header
+basic styles
 "
 git push origin -u main
