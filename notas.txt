@@ -1,9 +1,6 @@
 git add .
 git commit -m "
-Frontend:
-Get user from localSotrage in auth-slice
-Logout functionality: auth-slice, auth-service and Header
-Login functionality: auth-slice, auth-service and Login
-Spinner
+Backend:
+ticket-modal: ticket Schema and model
 "
 git push origin -u main
