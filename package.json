@@ -1,0 +1,19 @@
+{
+	"name": "05-mern-project",
+	"version": "1.0.0",
+	"description": "Support app",
+	"main": "server.js",
+	"scripts": {
+		"start": "node backend/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Felipeazs/react-mern-project-II.git"
+	},
+	"author": "",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Felipeazs/react-mern-project-II/issues"
+	},
+	"homepage": "https://github.com/Felipeazs/react-mern-project-II#readme"
+}
