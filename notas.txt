@@ -1,8 +1,7 @@
 git add .
 git commit -m "
 Frontend:
-Register state functionality
-Login state functionality
-Home style
+Redux: initial setup
+User Authentication: src/features/auth/auth-slice, auth-service y src/app/store
 "
 git push origin -u main
