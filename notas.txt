@@ -1,8 +1,12 @@
 git add .
 git commit -m "
-Protect routes with JWT.
-get request route /me
-protecting routes: auth-middleware
-import function in routes
+Backend:
+Creating the frontend folder: npx create-react-app@latest frontend --template redux
+package.json scripts updated:  client: npm start --prefix frontend
+install concurrently to open back and front at the same time: npm i concurrently
+package.json scripts updated: dev: concurrently \"npm run server\" \"npm run client\"
+
+Frontend:
+In frontend install: npm i react-router-dom react-toastify axios react-icons react-modal
 "
 git push origin -u main
