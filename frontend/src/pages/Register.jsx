@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { register } from '../features/auth/auth-slice'
+
 import { FaUser } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
@@ -13,6 +16,11 @@ const Register = () => {
 
     const { name, email, password, password2 } = formData
 
+    const dispatch = useDispatch()
+
+    //values from /auth/user-slice
+    const { user, isLoading, isSuccess, message } = useSelector(state => state.auth)
+
     const changeHandler = event => {
         setFormData(prevState => ({
             ...prevState,
@@ -25,6 +33,14 @@ const Register = () => {
 
         if (password !== password2) {
             toast.error('Passwords must match')
+        } else {
+            const userData = {
+                name,
+                email,
+                password,
+            }
+
+            dispatch(register(userData)) //Manage state with redux
         }
     }
 

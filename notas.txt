@@ -1,7 +1,7 @@
 git add .
 git commit -m "
 Frontend:
-Redux: initial setup
-User Authentication: src/features/auth/auth-slice, auth-service y src/app/store
+auth-slice: const register and login function, imported to Register to manage the states of the user data when register and login to the page.
+
 "
 git push origin -u main
