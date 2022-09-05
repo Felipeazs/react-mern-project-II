@@ -1,14 +1,9 @@
 git add .
 git commit -m "
 Frontend:
-auth-service create service to register a new user: axios and localstorage then import to auth-slice.
-Set extraReducers in auth-slice to manage the state while is pending, fulfilled or rejected the requests.
-Reset data after submition in reducers auth-slice
-UseEffect in Register to manage response after register
-
-Setting the port of the backend:
-proxy: http://localhost:5001
-
-Forgot to send the user to authService from auth-slice
+Get user from localSotrage in auth-slice
+Logout functionality: auth-slice, auth-service and Header
+Login functionality: auth-slice, auth-service and Login
+Spinner
 "
 git push origin -u main

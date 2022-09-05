@@ -7,6 +7,8 @@ import { register, reset } from '../features/auth/auth-slice'
 import { FaUser } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 
+import Spinner from '../components/Spinner'
+
 const Register = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -58,6 +60,10 @@ const Register = () => {
 
             dispatch(register(userData)) //Manage state with redux
         }
+    }
+
+    if (isLoading) {
+        return <Spinner />
     }
 
     return (
