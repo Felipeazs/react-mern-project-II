@@ -1,6 +1,8 @@
 git add .
 git commit -m "
-login functionality.
-Sending back JWT: npm i jsonwebtoken, JWT_SECRET
+Protect routes with JWT.
+get request route /me
+protecting routes: auth-middleware
+import function in routes
 "
 git push origin -u main
