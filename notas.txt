@@ -1,7 +1,0 @@
-git add .
-git commit -m "
-Backend:
-get single ticket, update and delete tickets functionality: ticket-controller
-Full CRUD ready
-"
-git push origin -u main
