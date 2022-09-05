@@ -3,3 +3,4 @@ notas
 /.vscode
 .DS_Store
 .env
+.prettierrc.json
