@@ -71,6 +71,7 @@ const NewTicket = () => {
                             value={product}
                             onChange={event => setProduct(event.target.value)}
                             id="product">
+                            <option value="">Select your device</option>
                             <option value="iPhone">iPhone</option>
                             <option value="Macbook Pro">Macbook Pro</option>
                             <option value="iMac">iMac</option>
