@@ -12,8 +12,6 @@ const createTicket = async (ticket, token) => {
 
     const response = await axios.post(API_URL, ticket, config)
 
-    console.log(response.data)
-
     return response.data
 }
 //get user tickets
