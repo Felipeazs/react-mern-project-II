@@ -1,15 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getTicket, closeTicket, reset } from '../features/tickets/ticket-slice'
 import { toast } from 'react-toastify'
+import Modal from 'react-modal'
+import { FaPlus } from 'react-icons/fa'
+
+import { getTicket, closeTicket } from '../features/tickets/ticket-slice'
+import { getNotes, createNote, reset as notesReset } from '../features/notes/note-slice'
 
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
-import { useEffect } from 'react'
+import NoteItem from '../components/NoteItem'
+
+const customStyles = {
+    content: {
+        width: '500px',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        position: 'relative',
+    },
+}
+
+Modal.setAppElement('#root')
 
 const Ticket = () => {
-    const { ticket, isLoading, isSuccess, isError, message } = useSelector(state => state.tickets)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [noteText, setNoteText] = useState('')
+
+    const { ticket, isLoading, isError, message } = useSelector(state => state.tickets)
+    const { notes, isLoading: notesIsLoading } = useSelector(state => state.notes)
     const dispatch = useDispatch()
 
     const { id } = useParams()
@@ -20,6 +43,7 @@ const Ticket = () => {
             toast.error(message)
         }
         dispatch(getTicket(id))
+        dispatch(getNotes(id))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isError, message, id])
 
@@ -29,7 +53,21 @@ const Ticket = () => {
         navigate('/tickets')
     }
 
-    if (isLoading) {
+    const openModal = () => {
+        setModalIsOpen(true)
+    }
+    const closeModal = () => {
+        setModalIsOpen(false)
+    }
+
+    const submitHandler = event => {
+        event.preventDefault()
+
+        dispatch(createNote({ noteText, id }))
+        closeModal()
+    }
+
+    if (isLoading || notesIsLoading) {
         return <Spinner />
     }
 
@@ -51,7 +89,56 @@ const Ticket = () => {
                     <h3>Description of issue</h3>
                     <p>{ticket.description}</p>
                 </div>
+                <h2>Notes</h2>
             </header>
+
+            {ticket.status !== 'closed' && (
+                <button
+                    className="btn"
+                    onClick={openModal}>
+                    <FaPlus /> Add note
+                </button>
+            )}
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Add Note">
+                <h2>Add note</h2>
+                <button
+                    className="btn-close"
+                    onClick={closeModal}>
+                    X
+                </button>
+                <form
+                    action=""
+                    onSubmit={submitHandler}>
+                    <div className="form-group">
+                        <textarea
+                            name="noteText"
+                            id="noteText"
+                            className="form-control"
+                            placeholder="note text"
+                            value={noteText}
+                            onChange={event => setNoteText(event.target.value)}></textarea>
+                    </div>
+                    <div className="form-group">
+                        <button
+                            className="btn"
+                            type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </Modal>
+
+            {notes.map(note => (
+                <NoteItem
+                    key={note._id}
+                    note={note}
+                />
+            ))}
+
             {ticket.status !== 'closed' && (
                 <button
                     onClick={closeTicketHandler}

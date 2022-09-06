@@ -11,9 +11,23 @@ const initialState = {
 
 export const getNotes = createAsyncThunk('notes/getAll', async (id, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.token
+        const token = thunkAPI.getState().auth.user.token
         const notes = await noteService.getNotes(id, token)
         return notes
+    } catch (error) {
+        const message =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const createNote = createAsyncThunk('notes/create', async ({ noteText, id }, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        const note = await noteService.createNote(noteText, id, token)
+        return note
     } catch (error) {
         const message =
             (error.response && error.response.data && error.response.data.message) ||
@@ -29,7 +43,35 @@ export const noteSlice = createSlice({
     reducers: {
         reset: state => initialState,
     },
-    extraReducers: builders => {},
+    extraReducers: builders => {
+        builders
+            .addCase(getNotes.pending, state => {
+                state.isLoading = true
+            })
+            .addCase(getNotes.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.notes = action.payload
+            })
+            .addCase(getNotes.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(createNote.pending, state => {
+                state.isLoading = true
+            })
+            .addCase(createNote.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.notes.push(action.payload)
+            })
+            .addCase(createNote.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+    },
 })
 
 export const { reset } = noteSlice.actions
