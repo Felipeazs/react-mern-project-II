@@ -27,11 +27,9 @@ if (process.env.NODE_ENV === 'production') {
     //serve index.html for all routes
     app.get('*', (req, res) => res.sendFile(__dirname, '../', 'frontend', 'build', 'index.html'))
 } else {
-    
     app.get('/', (req, res) => {
         res.status(200).send('API is running...')
     })
-}
 }
 
 //error handler
