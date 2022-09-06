@@ -50,6 +50,7 @@ const getTicket = asyncHandler(async (req, res) => {
 const createTicket = asyncHandler(async (req, res) => {
     //Information sended from the auth-middleware
     const { product, description } = req.body
+
     if (!product || !description) {
         res.status(400)
         throw new Error('Please add a product and description')
